@@ -1,0 +1,72 @@
+const getUserChoice = userInput => {
+  userInput = userInput.toLowerCase();
+  if(userInput === 'rock' || userInput === 'paper' || userInput === 'scissors'){
+ 				return userInput;
+     }else{
+       console.log('Error!');
+       return '';
+     }
+}
+
+const getComputerChoice = function(){
+  let ranNum = Math.random() * 3;
+  ranNum = Math.floor(ranNum);
+  switch(ranNum){
+    case 0:
+      return 'rock';
+      break;
+    case 1:
+      return 'paper';
+      break;
+    case 2:
+      return 'sicssors';
+      break;
+  }
+return ranNum;
+}
+
+const determineWinner = (userChoice,computerChoice) =>{
+  if(userChoice === computerChoice){
+    return 'The game is a tie';
+  }else if(userChoice === "rock"){
+    switch(computerChoice){
+      case 'paper':
+        return 'The Computer won the game | Paper covers Rock';
+        break;
+      case 'sicssors':
+        return 'The user won the game | Rock destroys Sicssors';
+        break;
+    }
+  } else if(userChoice === "paper"){
+    switch(computerChoice){
+      case 'rock':
+        return 'The User won the game | Paper covers Rock';
+        break;
+      case 'sicssors':
+        return 'The Computer won the game | Sicssors cuts Paper';
+        break;
+    }  
+  } else if(userChoice === "sicssors"){
+      switch(computerChoice){
+        case 'rock':
+          return 'The Computer won the game | Rock destroys Sicssors';
+          break;
+        case 'paper':
+          return 'The User won the game | Sicssors cuts Paper';
+          break;
+      } 
+  }
+}
+
+function playGame(userInput){
+  const userInfo = "The user has chosen " + getUserChoice(userInput);
+  const compInfo = "The computer has chosen " + getComputerChoice();
+  const winInfo = determineWinner(getUserChoice('rock'),getComputerChoice());
+  console.log(userInfo);
+  console.log(compInfo);
+  console.log();
+  console.log(winInfo);
+}
+
+
+playGame("paper");
